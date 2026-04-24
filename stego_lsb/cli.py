@@ -48,20 +48,7 @@ def main() -> None:
 def steglsb(ctx: click.Context, hide: bool, recover: bool, analyze: bool, input_fp: str, secret_fp: str, output_fp: str,
             lsb_count: int, compression: int) -> None:
     """Hides or recovers data in and from an image"""
-    try:
-        if analyze:
-            LSBSteg.analysis(input_fp, secret_fp, lsb_count)
-
-        if hide:
-            LSBSteg.hide_data(input_fp, secret_fp, output_fp, lsb_count, compression)
-        elif recover:
-            LSBSteg.recover_data(input_fp, output_fp, lsb_count)
-
-        if not hide and not recover and not analyze:
-            click.echo(ctx.get_help())
-    except ValueError as e:
-        log.debug(e)
-        click.echo(ctx.get_help())
+    pass
 
 
 @main.command()
@@ -70,10 +57,7 @@ def steglsb(ctx: click.Context, hide: bool, recover: bool, analyze: bool, input_
 @click.pass_context
 def stegdetect(ctx: click.Context, image_path: str, lsb_count: int) -> None:
     """Shows the n least significant bits of image"""
-    if image_path:
-        StegDetect.show_lsb(image_path, lsb_count)
-    else:
-        click.echo(ctx.get_help())
+    pass
 
 
 @main.command()
@@ -88,16 +72,7 @@ def stegdetect(ctx: click.Context, image_path: str, lsb_count: int) -> None:
 def wavsteg(ctx: click.Context, hide: bool, recover: bool, input_fp: str, secret_fp: str, output_fp: str,
             lsb_count: int, num_bytes: int) -> None:
     """Hides or recovers data in and from a sound file"""
-    try:
-        if hide:
-            WavSteg.hide_data(input_fp, secret_fp, output_fp, lsb_count)
-        elif recover:
-            WavSteg.recover_data(input_fp, output_fp, lsb_count, num_bytes)
-        else:
-            click.echo(ctx.get_help())
-    except ValueError as e:
-        log.debug(e)
-        click.echo(ctx.get_help())
+    pass
 
 
 @main.command()

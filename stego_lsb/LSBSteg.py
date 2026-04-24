@@ -56,7 +56,7 @@ def prepare_recover(steg_image_path: str, output_file_path: str) -> Tuple[Image.
 
 def get_filesize(path: str) -> int:
     """Returns the file size in bytes of the file at path"""
-    return os.stat(path).st_size
+    pass
 
 
 def max_bits_to_hide(image: Image.Image, num_lsb: int, num_channels: int) -> int:
@@ -161,15 +161,4 @@ def recover_data(steg_image_path: str, output_file_path: str, num_lsb: int) -> N
 
 def analysis(image_file_path: str, input_file_path: str, num_lsb: int) -> None:
     """Print how much data we can hide and the size of the data to be hidden"""
-    if image_file_path is None:
-        raise ValueError("LSBSteg analysis requires an input image file path")
-
-    with Image.open(image_file_path) as image:
-        num_channels = len(image.getbands())
-        print(f"Image resolution: ({image.size[0]}, {image.size[1]}, {len(image.getbands())})\n"
-              f"{f'Using {num_lsb} LSBs, we can hide:':<30} {max_bits_to_hide(image, num_lsb, num_channels) // 8} B")
-
-        if input_file_path is not None:
-            print(f"{'Size of input file:':<30} {get_filesize(input_file_path)} B")
-
-        print(f"{'File size tag:':<30} {bytes_in_max_file_size(image, num_lsb, num_channels)} B")
+    pass
